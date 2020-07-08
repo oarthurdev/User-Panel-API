@@ -1,6 +1,5 @@
 const express = require('express')
 
-const CompanyController = require('./controllers/CompanyController')
 const UserController = require('./controllers/UserController')
 
 const routes = express.Router()
@@ -9,8 +8,8 @@ routes.post('/auth/login', UserController.login)
 routes.post('/auth/register', UserController.register)
 routes.post('/auth/logout', UserController.logout)
 
-routes.get('/company', UserController.auth, CompanyController.index)
+// routes.get('/company', UserController.auth, CompanyController.index)
 
-routes.post('/company/update', UserController.auth, CompanyController.update)
+// routes.post('/company/update', UserController.auth, CompanyController.update)
 
 module.exports = routes
