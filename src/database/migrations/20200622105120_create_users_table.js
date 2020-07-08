@@ -4,14 +4,14 @@ exports.up = function(knex, Promise) {
       table.string('username').notNullable();
       table.string('password').notNullable();
       table.string('email').notNullable();
-      table.string('nickname').notNullable();
       table.string('name').notNullable();
-      table.string('role').notNullable();
-      table.string('registered_by');
-      table.string('social_network');
-      table.string('link_social_network');
+      table.date('birth_date').notNullable();
+      table.string('secret_question').notNullable();
+      table.string('secret_answer').notNullable();
+      table.string('network_ip');
       table.boolean('activated').notNullable();
       table.uuid('token');
+      table.binary('profile_picture').notNullable();
       table.timestamp('created_at').defaultTo(knex.fn.now())
       table.timestamp('updated_at').defaultTo(knex.fn.now())
     })

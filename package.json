@@ -1,7 +1,7 @@
 {
-  "name": "challenge-serasa",
+  "name": "user-panel-api",
   "version": "1.0.0",
-  "description": "Serasa Challenge - New Developers Program",
+  "description": "User Panel API for Priston Tale Servers",
   "main": "index.js",
   "scripts": {
     "test": "",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oarthurdev/challenge-serasa.git"
+    "url": "git+https://github.com/oarthurdev/User-Panel-API.git"
   },
   "keywords": [],
   "author": "Arthur Wagenknecht <oarthurdev@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oarthurdev/challenge-serasa/issues"
+    "url": "https://github.com/oarthurdev/User-Panel-API/issues"
   },
-  "homepage": "https://github.com/oarthurdev/challenge-serasa#readme",
+  "homepage": "https://github.com/oarthurdev/User-Panel-API#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
