@@ -1,5 +1,7 @@
 const connection = require('../database/connection')
 const md5 = require('md5')
+const ip = require("ip");
+const uuidv4 = require('uuid/v4')
 
 require("dotenv-safe").config()
 const jwt = require('jsonwebtoken')
@@ -46,19 +48,37 @@ module.exports = {
     },
     
     async register(request, response) {
-        const {name, password, cnpj, qtdInvoicesMonth, qtdDebtsMonth, companyIndex} = request.body
-        
+        const {username, password, rpassword, name, email, birthdate, secretquestion, secretanswer, toscheckbox} = request.body
+
         const encryptedPassword = md5(password)
-        
-        await connection('company').insert({
-            name: name,
-            password: encryptedPassword,
-            cnpj: cnpj,
-            qtdInvoicesMonth: 0,
-            qtdDebtsMonth: 0,
-            companyIndex: 50
-        })
-        
-        return response.json({ cnpj })
+        const uuid = uuidv4()
+
+        const databaseuser = await connection('users')
+        .where('username', username)
+        .select('username')
+
+        if(databaseuser[0] == undefined){
+            if(password == rpassword) {
+                await connection('users').insert({
+                    uuid,
+                    username: username,
+                    password: encryptedPassword,
+                    name: name,
+                    email: email,
+                    birth_date: birthdate,
+                    secret_question: secretquestion,
+                    secret_answer: secretanswer,
+                    network_ip: ip.address(),
+                    activated: true
+                })
+    
+                response.status(200).json({message: 'Usuário cadastrado.'})
+            } else {
+                return response.status(400).json({isEqual: false})
+            }
+            return response.json({ uuid })
+        } else {
+            return response.status(200).json({userExists: false})
+        }
     }
 }
